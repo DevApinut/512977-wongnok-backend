@@ -18,9 +18,9 @@ app.use(cors())
 app.use(morgan("dev"))
 
 //For set /api/....
-app.get('/', (req, res) => {
-    res.send('ทดสอบระบบ Backend')
-})
+// app.get('/', (req, res) => {
+//     res.send('ทดสอบระบบ Backend')
+// })
 app.use('/api', RouteAPI)
 
 const port = 9000
