@@ -5,9 +5,9 @@ const morgan = require("morgan")
 const cors = require("cors")
 const mongoose = require("mongoose")
 
-// require("dotenv").config()
+require("dotenv").config()
 
-// const RouteAPI = require('./Component/Route/RouteAPI')
+const RouteAPI = require('./Component/Route/RouteAPI')
 
 const app = express()
 
@@ -21,7 +21,7 @@ app.use(morgan("dev"))
 app.get('/', (req, res) => {
     res.send('ทดสอบระบบ Backend')
 })
-// app.use('/api', RouteAPI)
+app.use('/api', RouteAPI)
 
 const port = 9000
 app.listen(port, () => { console.log(`Success for connect to Server at port ${port}`) })
