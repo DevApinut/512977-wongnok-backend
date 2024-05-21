@@ -19,7 +19,7 @@ app.use(morgan("dev"))
 
 //For set /api/....
 app.get('/test', (req, res) => {
-    res.send(`${process.env.DATABASE}EEE`)
+    res.send(`${process.env.DATABASE}`)
 })
 app.use('/api', RouteAPI)
 
@@ -32,7 +32,7 @@ mongoose.connect(process.env.DATABASE, {
     useUnifiedTopology: false
 })
     .then(() => console.log("เชื่อมต่อข้อมูลสำเร็จ"))
-    .catch((err) => console.log("การเชื่อมต่อมีปัญหา"))
+    .catch((err) => console.log(err))
 
 
 
