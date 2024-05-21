@@ -1,21 +1,21 @@
 
 
 const express = require("express")
-const morgan = require("morgan")
-const cors = require("cors")
-const mongoose = require("mongoose")
+// const morgan = require("morgan")
+// const cors = require("cors")
+// const mongoose = require("mongoose")
 
-require("dotenv").config()
+// require("dotenv").config()
 
-const RouteAPI = require('./Component/Route/RouteAPI')
+// const RouteAPI = require('./Component/Route/RouteAPI')
 
 const app = express()
 
 
 //For middleware
 app.use(express.json())
-app.use(cors())
-app.use(morgan("dev"))
+// app.use(cors())
+// app.use(morgan("dev"))
 
 //For set /api/....
 app.get('/', (req, res) => {
