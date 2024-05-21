@@ -18,7 +18,7 @@ app.use(cors())
 app.use(morgan("dev"))
 
 //For set /api/....
-app.get('/test', (req, res) => {
+app.get('/', (req, res) => {
     res.send('ทดสอบระบบ Backend')
 })
 app.use('/api', RouteAPI)
