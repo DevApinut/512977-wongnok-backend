@@ -19,6 +19,8 @@ exports.Register = async (req, res) => {
                 .catch(err => console.error(err.message))
         } else if (!validusername.test(username) || !validPassword.test(password) || !validEmail.test(email)) {
             res.json({ res: "ไม่สำเร็จ" })
+        }else if(user){
+            res.json({res:`มีผู้ใช้ชื่อ ${username} แล้ว`})
         }
     }
     catch (err) {
