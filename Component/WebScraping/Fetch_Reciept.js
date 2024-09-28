@@ -3,10 +3,16 @@ const puppeteer = require('puppeteer')
 
 exports.Web_fetch = async(req, res) => {
     try {
-        // res.json({res:"test"})
-        const browser = await puppeteer.launch({})
-        const page = await browser.newPage()
-        await page.goto('file:///C:/Users/HP/Desktop/PEA-Life44.html')
+
+        const {urllink} = req.body
+        // res.json({res:"tessdfasdt"})
+        const browser = await puppeteer.launch();
+        const page = await browser.newPage();
+        
+        // Navigate the page to a URL.
+        await page.goto('http://eemsweb.pea.co.th/eemx/approval/view/employee/TJ24179674');
+        
+        
         var TJ_Number = await page.waitForSelector("#menu-top-secondary > div:nth-child(1) > h5 > span.text-black-50")
         var TJ_Number_val = await page.evaluate(element => element.textContent, TJ_Number)
         
