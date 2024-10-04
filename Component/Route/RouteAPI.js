@@ -8,7 +8,7 @@ const {Login} = require('../Login/Login')
 
 
 // Get for Router
-router.get('/Reciept', Web_fetch)
+router.post('/Reciept', Web_fetch)
 router.get('/GetDescription', GetDescription)
 router.get('/GetPersonel', GetPersonel)
 
