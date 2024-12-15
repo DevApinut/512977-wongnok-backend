@@ -21,21 +21,23 @@ const { Description, GetDescription } = require('../Description/Description')
 const { Personel, GetPersonel } = require('../Personel/Personel')
 const { Register } = require('../Register/Register')
 const { Login } = require('../Login/Login')
-const { Dowload } = require('../Dowload/dowload')
+const { uploadFile,ReadnameFile,Deletefile } = require('../Dowload/dowload')
 
 
 // Get for Router
 router.post('/Reciept', Web_fetch)
 router.get('/GetDescription', GetDescription)
 router.get('/GetPersonel', GetPersonel)
-
+router.get('/ReadnameFile', ReadnameFile)
 
 // Post for Router
 router.post('/Description', Description)
 router.post('/Register', Register)
 router.post('/Login', Login)
 router.post('/Personel', Personel)
-router.post('/Dowloadfile', upload.single('file'), Dowload)
+router.post('/uploadFile', upload.single('file'), uploadFile)
+router.post('/Deletefile/:nameFile', Deletefile)
+
 
 
 module.exports = router
