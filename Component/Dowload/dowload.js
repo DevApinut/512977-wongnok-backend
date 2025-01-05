@@ -3,12 +3,12 @@ const multer = require('multer')
 const upload = multer({ dest: 'uploads/' })
 
 exports.uploadFile = async (req, res) => {
-    
+
     res.json({ message: "Upload Success" })
 
-    
+
 }
-exports.ReadnameFile = async (req, res) => {    
+exports.ReadnameFile = async (req, res) => {
 
     const fs = require("fs");
     const path = require("path");
@@ -17,10 +17,10 @@ exports.ReadnameFile = async (req, res) => {
 
     // read all files in the directory
     let filesArr = fs.readdirSync(folderPath);
-    res.json({ message: filesArr })   
+    res.json({ message: filesArr })
 }
 
-exports.EditFilename = async (req, res) => {    
+exports.EditFilename = async (req, res) => {
 
     const fs = require("fs");
     const path = require("path");
@@ -48,19 +48,30 @@ exports.EditFilename = async (req, res) => {
 }
 
 exports.Deletefile = (req, res) => {
-    res.json({res:req.query.nameFile})
-    // const fs = require('fs');
 
-    // const filePath = './uploads/FM0 copy 20.0.0..docx'; // Replace with the actual path to your file
 
-    // // Remove the file
-    // fs.unlink(filePath, (err) => {
-    //     res.json({res:"remove success"})
-    //     if (err) {
-    //         console.error(`Error removing file: ${err}`);
-    //         return;
-    //     }
+    try {
 
-    //     console.log(`File ${filePath} has been successfully removed.`);
-    // });
+        const fs = require('fs');
+
+        const filePath = `./uploads/${req.body.nameFile}`; // Replace with the actual path to your file
+
+        // Remove the file
+        fs.unlink(filePath, (err) => {
+            res.json({ res: "remove success" })
+            if (err) {
+                console.error(`Error removing file: ${err}`);
+                return;
+            }
+
+            console.log(`File ${filePath} has been successfully removed.`);
+        });
+        // res.json({ res: req.body.nameFile })
+    }
+    catch {
+        (err) => {
+            res.json({ res: err })
+        }
+    }
+
 }

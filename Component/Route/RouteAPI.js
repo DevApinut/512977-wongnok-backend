@@ -36,7 +36,7 @@ router.post('/Register', Register)
 router.post('/Login', Login)
 router.post('/Personel', Personel)
 router.post('/uploadFile', upload.single('file'), uploadFile)
-router.post('/Deletefile/:nameFile', Deletefile)
+router.post('/Deletefile', Deletefile)
 
 
 
