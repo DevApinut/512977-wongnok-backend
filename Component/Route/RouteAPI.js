@@ -24,11 +24,13 @@ const { Login } = require('../Login/Login')
 const { uploadFile,ReadnameFile,Deletefile } = require('../Dowload/dowload')
 
 
+
 // Get for Router
 router.post('/Reciept', Web_fetch)
 router.get('/GetDescription', GetDescription)
 router.get('/GetPersonel', GetPersonel)
 router.get('/ReadnameFile', ReadnameFile)
+
 
 // Post for Router
 router.post('/Description', Description)
