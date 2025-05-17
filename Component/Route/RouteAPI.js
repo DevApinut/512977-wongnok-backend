@@ -16,20 +16,23 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage })
 
 const router = express.Router()
-const { Web_fetch } = require('../WebScraping/Fetch_Reciept')
+
 const { Description, GetDescription } = require('../Description/Description')
 const { Personel, GetPersonel } = require('../Personel/Personel')
 const { Register } = require('../Register/Register')
 const { Login } = require('../Login/Login')
-const { uploadFile,ReadnameFile,Deletefile } = require('../Dowload/dowload')
-
-
+const { MenuCreate,GetMenu,deleteMenu } = require('../Menulist/Menu')
 
 // Get for Router
-router.post('/Reciept', Web_fetch)
+
 router.get('/GetDescription', GetDescription)
 router.get('/GetPersonel', GetPersonel)
-router.get('/ReadnameFile', ReadnameFile)
+
+router.get('/GetMenu', GetMenu)
+
+
+
+
 
 
 // Post for Router
@@ -37,8 +40,10 @@ router.post('/Description', Description)
 router.post('/Register', Register)
 router.post('/Login', Login)
 router.post('/Personel', Personel)
-router.post('/uploadFile', upload.single('file'), uploadFile)
-router.post('/Deletefile', Deletefile)
+
+router.post('/MenuCreate', MenuCreate)
+router.post('/deleteMenu', deleteMenu)
+
 
 
 
