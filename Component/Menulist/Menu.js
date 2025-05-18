@@ -31,11 +31,19 @@ exports.MenuCreate = async (req, res) => {
     }
 }
 exports.GetMenu = async (req, res) => {
+    const { data } = req.query
     try {
-
-        await BlogMenu.find().sort({ createdAt: -1 })
-            .then((result) => {
-                res.json({ res: result })
+        await BlogMenu.find({ nameofFood: { $regex: data, $options: 'i' } }).sort({ createdAt: -1 })
+            .then(async (result) => {
+                if (result.length == 0 && data == "") {
+                    await BlogMenu.find()
+                        .then((result1)=>res.json({ res: result1 }))
+                }else if(result.length == 0 && data !== ""){
+                    res.json({ res: result })
+                }else {
+                    res.json({ res: result })
+                }
+                
             })
             .catch(err => { res.json({ res: "err1" }) })
 
