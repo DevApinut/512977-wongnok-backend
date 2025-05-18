@@ -21,7 +21,7 @@ const { Description, GetDescription } = require('../Description/Description')
 const { Personel, GetPersonel } = require('../Personel/Personel')
 const { Register } = require('../Register/Register')
 const { Login } = require('../Login/Login')
-const { MenuCreate,GetMenu,deleteMenu } = require('../Menulist/Menu')
+const { MenuCreate,GetMenu,deleteMenu,FineoneMenu,Updaterating,UpdateMenu } = require('../Menulist/Menu')
 
 // Get for Router
 
@@ -43,6 +43,9 @@ router.post('/Personel', Personel)
 
 router.post('/MenuCreate', MenuCreate)
 router.post('/deleteMenu', deleteMenu)
+router.post('/FineoneMenu', FineoneMenu)
+router.post('/Updaterating', Updaterating)
+router.post('/UpdateMenu', UpdateMenu)
 
 
 

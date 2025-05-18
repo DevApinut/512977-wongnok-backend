@@ -7,9 +7,9 @@ exports.MenuCreate = async (req, res) => {
         Hardforwork,
         imgfile,
         nameUser
-     } = req.body
+    } = req.body
 
-   
+
     try {
         if (nameUser == false) nameUser = 'ไม่ระบุตัวตน'
         await BlogMenu.create({
@@ -22,7 +22,7 @@ exports.MenuCreate = async (req, res) => {
             nameUser
         })
             .then(result1 => {
-                res.json({ res: "ทำการสร้างข้อมูลสำเร็จ",nameUser })
+                res.json({ res: "ทำการสร้างข้อมูลสำเร็จ", nameUser })
             })
             .catch(err => res.json({ res: err }))
     }
@@ -45,10 +45,55 @@ exports.GetMenu = async (req, res) => {
     }
 }
 exports.deleteMenu = async (req, res) => {
-    const {ID} = req.body
+    const { ID } = req.body
     try {
 
-        await BlogMenu.findByIdAndDelete({_id:ID})
+        await BlogMenu.findByIdAndDelete({ _id: ID })
+            .then((result) => {
+                res.json({ res: result })
+            })
+            .catch(err => { res.json({ res: "err1" }) })
+
+    }
+    catch (err) {
+        res.json({ res: "err2" })
+    }
+}
+
+exports.FineoneMenu = async (req, res) => {
+    const { ID } = req.body
+    try {
+        await BlogMenu.findById({ _id: ID })
+            .then((result) => {
+                res.json({ res: result })
+            })
+            .catch(err => { res.json({ res: "err1" }) })
+
+    }
+    catch (err) {
+        res.json({ res: "err2" })
+    }
+}
+
+exports.Updaterating = async (req, res) => {
+    const { ID, ratingofFood, SuumratingofFood } = req.body
+    try {
+        await BlogMenu.findOneAndUpdate({ _id: ID }, { ratingofFood, SuumratingofFood }, { new: true })
+            .then((result) => {
+                res.json({ res: result })
+            })
+            .catch(err => { res.json({ res: "err1" }) })
+
+    }
+    catch (err) {
+        res.json({ res: "err2" })
+    }
+}
+exports.UpdateMenu = async (req, res) => {
+
+    const { ID, nameofFood, ingredient, reciept, timeforcook, imgfile, Hardforwork } = req.body
+    try {
+        await BlogMenu.findOneAndUpdate({ _id: ID }, { nameofFood, ingredient, reciept, timeforcook, imgfile, Hardforwork }, { new: true })
             .then((result) => {
                 res.json({ res: result })
             })
