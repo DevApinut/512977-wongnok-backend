@@ -31,27 +31,73 @@ exports.MenuCreate = async (req, res) => {
     }
 }
 exports.GetMenu = async (req, res) => {
-    const { data } = req.query
+    const { data, rating } = req.query
+    let ratingtonumber = Number(rating)
     try {
-        await BlogMenu.find({ nameofFood: { $regex: data, $options: 'i' } }).sort({ createdAt: -1 })
-            .then(async (result) => {
-                if (result.length == 0 && data == "") {
-                    await BlogMenu.find()
-                        .then((result1)=>res.json({ res: result1 }))
-                }else if(result.length == 0 && data !== ""){
-                    res.json({ res: result })
-                }else {
-                    res.json({ res: result })
-                }
-                
-            })
-            .catch(err => { res.json({ res: "err1" }) })
+        if (data === "" && ratingtonumber === 0) {
+            await BlogMenu.find()
+                .then((result1) => res.json({ res: result1 }))
+                .catch(err => { res.json({ res: "Error Case1" }) })
+        } else if (data !== "" && ratingtonumber === 0) {
+            await BlogMenu.find({
+                $or: [
 
+                    { nameofFood: { $regex: data, $options: 'i' } },
+                    { nameUser: { $regex: data, $options: 'i' } }
+
+                ]
+            }
+            ).sort({ createdAt: -1 })
+                .then((result1) => res.json({ res: result1 }))
+                .catch(err => { res.json({ res: "Error Case2" }) })
+        } else if (data !== "" && ratingtonumber !== 0) {
+            await BlogMenu.find({
+                $or: [
+
+                    { nameofFood: { $regex: data, $options: 'i' } },
+                    { nameUser: { $regex: data, $options: 'i' } }
+
+                ]
+                , SuumratingofFood: { $gte: Number(ratingtonumber), $lt: Number(ratingtonumber) + 1 }
+            }).sort({ createdAt: -1 })
+                .then((result1) => res.json({ res: result1 }))
+                .catch(err => { res.json({ res: "Error Case3" }) })
+        } else if (data === "" && ratingtonumber !== 0) {
+            await BlogMenu.find({
+                SuumratingofFood: { $gte: Number(ratingtonumber), $lt: Number(ratingtonumber) + 1 }
+            }).sort({ createdAt: -1 })
+                .then((result1) => res.json({ res: result1 }))
+                .catch(err => { res.json({ res: Math.floor(ratingtonumber) }) })
+        }
     }
     catch (err) {
-        res.json({ res: "err2" })
+        res.json({ res: "Can not try main function" })
     }
 }
+
+
+// exports.GetMenu = async (req, res) => {
+//     const { data } = req.query
+//     try {
+//         await BlogMenu.find({ nameofFood: { $regex: data, $options: 'i' } }).sort({ createdAt: -1 })
+//             .then(async (result) => {
+//                 if (result.length == 0 && data == "") {
+//                     await BlogMenu.find()
+//                         .then((result1)=>res.json({ res: result1 }))
+//                 }else if(result.length == 0 && data !== ""){
+//                     res.json({ res: result })
+//                 }else {
+//                     res.json({ res: result })
+//                 }
+
+//             })
+//             .catch(err => { res.json({ res: "err1" }) })
+
+//     }
+//     catch (err) {
+//         res.json({ res: "err2" })
+//     }
+// }
 exports.deleteMenu = async (req, res) => {
     const { ID } = req.body
     try {

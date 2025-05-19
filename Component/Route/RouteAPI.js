@@ -22,6 +22,7 @@ const { Personel, GetPersonel } = require('../Personel/Personel')
 const { Register } = require('../Register/Register')
 const { Login } = require('../Login/Login')
 const { MenuCreate,GetMenu,deleteMenu,FineoneMenu,Updaterating,UpdateMenu } = require('../Menulist/Menu')
+const { requirepersonelLogin } = require('../AuthController/authcontroller')
 
 // Get for Router
 
@@ -41,11 +42,11 @@ router.post('/Register', Register)
 router.post('/Login', Login)
 router.post('/Personel', Personel)
 
-router.post('/MenuCreate', MenuCreate)
-router.post('/deleteMenu', deleteMenu)
-router.post('/FineoneMenu', FineoneMenu)
-router.post('/Updaterating', Updaterating)
-router.post('/UpdateMenu', UpdateMenu)
+router.post('/MenuCreate',requirepersonelLogin, MenuCreate)
+router.post('/deleteMenu',requirepersonelLogin, deleteMenu)
+router.post('/FineoneMenu',requirepersonelLogin, FineoneMenu)
+router.post('/Updaterating',requirepersonelLogin, Updaterating)
+router.post('/UpdateMenu',requirepersonelLogin, UpdateMenu)
 
 
 
