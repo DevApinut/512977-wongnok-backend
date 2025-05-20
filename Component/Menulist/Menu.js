@@ -35,7 +35,7 @@ exports.GetMenu = async (req, res) => {
     let ratingtonumber = Number(rating)
     try {
         if (data === "" && ratingtonumber === 0) {
-            await BlogMenu.find()
+            await BlogMenu.find().sort({ createdAt: -1 })
                 .then((result1) => res.json({ res: result1 }))
                 .catch(err => { res.json({ res: "Error Case1" }) })
         } else if (data !== "" && ratingtonumber === 0) {
@@ -70,6 +70,17 @@ exports.GetMenu = async (req, res) => {
                 .catch(err => { res.json({ res: Math.floor(ratingtonumber) }) })
         }
     }
+    catch (err) {
+        res.json({ res: "Can not try main function" })
+    }
+}
+exports.GetMenuRating = async (req, res) => { 
+    try {
+        await BlogMenu.find({}).sort({ SuumratingofFood : -1 })
+            .then((result1) => res.json({ res: result1 }))
+            .catch(err => { res.json({ res: "Error Case2" }) })
+    }
+
     catch (err) {
         res.json({ res: "Can not try main function" })
     }
