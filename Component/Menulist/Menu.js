@@ -176,7 +176,7 @@ exports.UpdateMenu = async (req, res) => {
     try {
         await BlogMenu.findById({ _id: ID })
             .then((result) => {
-                if (result.data !== "") {
+                if (result.imgfile !== "") {
                     const publicId = getPublicIdFromUrl(result.imgfile);
                     cloudinary.uploader.destroy(publicId, (error, result) => {
                         if (error) {
