@@ -13,7 +13,7 @@ You will also see any lint errors in the console.
 For Docker you can use 
 ### Docker build -t Server .
 
-After build image you can run container to port 3000
+After build image you can run container to port 9000
 
 ### docker run --name server -p 9000:9000 server
 
