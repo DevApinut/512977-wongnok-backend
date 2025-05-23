@@ -17,3 +17,6 @@ After build image you can run container to port 9000
 
 ### docker run --name server -p 9000:9000 server
 
+postman collection
+https://www.postman.com/spaceflight-explorer-18574518/apinut/collection/us9v90p/backendwongnok?action=share&creator=29478308
+
